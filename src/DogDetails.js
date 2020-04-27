@@ -1,6 +1,7 @@
 import React from "react";
 import { v4 as uuid } from 'uuid';
 import { useParams, Link, Redirect } from 'react-router-dom';
+import "./DogDetails.css"
 
 function DogDetails({ dogs }) {
   
@@ -11,15 +12,6 @@ function DogDetails({ dogs }) {
   if (!dog) return <Redirect to="/dogs"/>
  
   let {age, src, facts} = dog;
-  // let currDogIdx;
-
-  // for (let i = 0; i < dogs.length; i++) {
-  //   if (name.toLowerCase() === dogs[i].name.toLowerCase()) {
-  //     currDogIdx = i;
-  //   }
-  // }
-
-  // let {age, src, facts} = dogs[currDogIdx];
 
   return (
     <div>

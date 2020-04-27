@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
-import DogList from './DogList'
-import DogDetails from './DogDetails'
+import { BrowserRouter } from 'react-router-dom';
+
+import Nav from './Nav'
+import Routes from './Routes'
 
 import whiskey from "./images/whiskey.jpg";
 import tubby from "./images/tubby.jpg";
@@ -12,19 +13,12 @@ import perry from "./images/perry.jpg";
 
 function App({dogs}) {
 
-  console.log(`\n\n\n The value of dogs inside App is `, dogs, '\n\n\n');
-
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/dogs" >
-          <DogList dogs={dogs} />
-        </Route>
-        <Route exact path="/dogs/:name" >
-          <DogDetails dogs={dogs} />
-        </Route>
-        <Redirect to="/dogs" />
-      </Switch>
+        <Nav dogs={dogs}/>
+        <div>
+          <Routes dogs={dogs} />
+        </div>
     </BrowserRouter>
   );
 }
