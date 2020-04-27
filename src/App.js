@@ -1,31 +1,38 @@
 import React from 'react';
 import './App.css';
-import {Switch, Route, Redirect, useParams} from 'react-router-dom';
+import { Switch, Route, Redirect, useParams, BrowserRouter } from 'react-router-dom';
 import DogList from './DogList'
 import DogDetails from './DogDetails'
 
 function App() {
 
-  const {name} = useParams();
+  let currDogIdx;
 
-  let currDogIdx; 
+  try {
+    const params = useParams();
 
-  for (let i = 0; i < App.defaultProps.dogs; i++) {
-    if (name === App.defaultProps.dogs[i].name) {
-      currDogIdx = i;
+    for (let i = 0; i < App.defaultProps.dogs; i++) {
+      if (params.name === App.defaultProps.dogs[i].name) {
+        currDogIdx = i;
+      }
     }
+
+  } catch (e) {
+    console.log(e);
   }
 
   return (
-    <Switch>
-      <Route exact path="/dogs" >
-        <DogList dogs={App.defaultProps.dogs}/> 
-      </Route>
-      <Route path="/dogs/:name" >
-        <DogDetails dog={App.defaultProps.dogs[currDogIdx]}/> 
-      </Route>
-      <Redirect to="/dogs" />
-    </Switch>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/dogs" >
+          <DogList dogs={App.defaultProps.dogs} />
+        </Route>
+        <Route path="/dogs/:name" >
+          <DogDetails dog={App.defaultProps.dogs[currDogIdx]} />
+        </Route>
+        <Redirect to="/dogs" />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
@@ -34,7 +41,7 @@ App.defaultProps = {
     {
       name: "Whiskey",
       age: 5,
-      src: whiskey,
+      src: "whiskey",
       facts: [
         "Whiskey loves eating popcorn.",
         "Whiskey is a terrible guard dog.",
@@ -44,7 +51,7 @@ App.defaultProps = {
     {
       name: "Duke",
       age: 3,
-      src: duke,
+      src: "duke",
       facts: [
         "Duke believes that ball is life.",
         "Duke likes snow.",
@@ -54,7 +61,7 @@ App.defaultProps = {
     {
       name: "Perry",
       age: 4,
-      src: perry,
+      src: "perry",
       facts: [
         "Perry loves all humans.",
         "Perry demolishes all snacks.",
@@ -64,7 +71,7 @@ App.defaultProps = {
     {
       name: "Tubby",
       age: 4,
-      src: tubby,
+      src: "tubby",
       facts: [
         "Tubby is really stupid.",
         "Tubby does not like walks.",

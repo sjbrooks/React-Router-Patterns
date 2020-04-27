@@ -5,8 +5,13 @@ function DogDetails({name, age, src, facts}) {
   return (
     <div>
       <p>Name: {name}</p>
-      <p>Age: {name}</p>
-      <img src={``} />
+      <p>Age: {age}</p>
+      <img src={`/${src}.jpg`} alt={`${name} dog`} />
+      <ul>
+        {facts.map(
+          f => (<li key={uuid()}>{f}</li>)
+        )}
+      </ul>
     </div>
   );
 }
