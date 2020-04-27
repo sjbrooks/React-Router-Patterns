@@ -1,13 +1,21 @@
 import React from "react";
-import {v4 as uuid} from 'uuid';
-import DogDetails from './DogDetails'
+import { v4 as uuid } from 'uuid';
+import { Link } from 'react-router-dom';
 
-function DogList({dogs}) {
+
+function DogList({ dogs }) {
+
   return (
     <div>
       {dogs.map(
-        d =>
-        <DogDetails key={uuid()} dog={d} />)}
+        d => (
+          <div key={uuid()}>
+            <h2>
+              <Link to={`/dogs/${d.name.toLowerCase()}`}>{d.name}</Link>
+            </h2>
+            <img src={d.src} alt={`${d.name} dog`} />
+          </div>
+        ))}
     </div>
   );
 }
