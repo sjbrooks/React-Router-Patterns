@@ -3,15 +3,11 @@ import { v4 as uuid } from 'uuid';
 import { useParams, Link, Redirect } from 'react-router-dom';
 import "./DogDetails.css"
 
-function DogDetails({ dogs }) {
-  
-  const {name} = useParams();
-  
-  let dog = dogs.find(d => name.toLowerCase() === d.name.toLowerCase())
+function DogDetails({ dog }) {
   
   if (!dog) return <Redirect to="/dogs"/>
  
-  let {age, src, facts} = dog;
+  let {name, age, src, facts} = dog;
 
   return (
     <div>

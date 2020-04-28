@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import DogList from './DogList'
-import DogDetails from './DogDetails'
+import DogFilter from './DogFilter'
 
 function Routes({ dogs }) {
 
@@ -12,7 +12,7 @@ function Routes({ dogs }) {
           <DogList dogs={dogs} />
         </Route>
         <Route exact path="/dogs/:name" >
-          <DogDetails dogs={dogs} />
+          <DogFilter dogs={dogs} />
         </Route>
         <Redirect to="/dogs" />
       </Switch>
